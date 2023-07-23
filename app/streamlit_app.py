@@ -21,7 +21,7 @@ st.set_page_config(
 # from app.core.config import config
 config: Dict[str, Any] = dotenv_values(".env")
 if not config:
-    # config = {k = v for k, v in items(st.secrets)}
+    # config = {k: = v for k, v in st.secrets.items()}
     config["DEBUG"] = st.secrets["DEBUG"]
     config["ENV_MODE"] = st.secrets["ENV_MODE"]
     config["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
@@ -256,10 +256,20 @@ if st.button("Generate"):
 
             # st.write(output)
             # st.write(type(output))
-
-            response: dict[str, list] = json.loads(output)
-            comments: list = response["comments"]
-
+            comments: list = []
+            
+            response: Any = json.loads(output)
+            # print(response, type(response))
+            if type(response) == list:
+                comments = response
+            else:
+                if response["comments"]:
+                    comments = response["comments"]
+                elif response["Comments"]:
+                    comments = response["Comments"]
+                else:
+                    print(response, type(response))
+                    
             # print(comments, type(comments), type(response))
 
             for obj in comments:

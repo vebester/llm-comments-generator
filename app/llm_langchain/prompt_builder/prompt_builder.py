@@ -90,7 +90,7 @@ class PromptBuilder:
 
         # Отформатируйте выходные данные в формате JSON в виде списка сгенерированных объектов комментариев со следующими ключами
         human_template += """
-        Format the output as JSON with list of generated Comment objects with the following keys:
+        Format the output as JSON with list of generated comment objects with the following keys:
         label 
         comment        
         """
