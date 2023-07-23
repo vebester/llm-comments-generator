@@ -62,6 +62,10 @@ target/
 # DotEnv configuration
 .env
 
+# .streamlit/secrets.toml
+.streamlit/
+secrets.toml
+
 # Database
 *.db
 *.rdb

@@ -19,10 +19,10 @@ class LLMLangChain:
     """
 
     """
-    def __init__(self, config: Dict[str, str],
+    def __init__(self, config: Dict[str, Any],
                  **kwargs) -> None:
-        self.config: Dict[str, str] = config
-        self.model_name = config["model_name"]
+        self.config: Dict[str, Any] = config
+        self.model_name: str = config["model_name"]
         self.openai_api_key: str = config["OPENAI_API_KEY"]
 
         if self.openai_api_key is None or self.openai_api_key == "":

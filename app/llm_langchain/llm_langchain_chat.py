@@ -52,7 +52,7 @@ class LLMLangChainChat(LLMLangChain):
     """
 
     """
-    def __init__(self, config: Dict[str, str],
+    def __init__(self, config: Dict[str, Any],
                  **kwargs) -> None:
         super().__init__(config, **kwargs)
         

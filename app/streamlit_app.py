@@ -1,3 +1,4 @@
+from typing import Dict, List, Optional, Tuple, Union, Any
 from dotenv import dotenv_values
 import streamlit as st
 from streamlit_chat import message
@@ -11,8 +12,20 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+# setup streamlit page
+st.set_page_config(
+    page_title="ChatGPT",
+    page_icon="🤖"
+)
+
 # from app.core.config import config
-config = dotenv_values(".env")
+config: Dict[str, Any] = dotenv_values(".env")
+if not config:
+    # config = {k = v for k, v in items(st.secrets)}
+    config["DEBUG"] = st.secrets["DEBUG"]
+    config["ENV_MODE"] = st.secrets["ENV_MODE"]
+    config["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+# st.write(config)
 
 debug: bool = bool(config["DEBUG"])
 env_mode: str = config["ENV_MODE"]
@@ -23,11 +36,6 @@ config["model_name"] = MODEL_NAMES[0]
 
 llm_chat = LLMLangChainChat(config)
 
-# setup streamlit page
-st.set_page_config(
-    page_title="ChatGPT",
-    page_icon="🤖"
-)
 
 # Вы являетесь опытным комментатором тем для обсуждения в Twitter, Instagram или любых других сообществах.
 system_template = "You are an experienced discussion topics commenter on Twitter, Instagram or any other communities."
