@@ -58,7 +58,7 @@ class LLMLangChainChat(LLMLangChain):
         
         return
 
-    def chat_open_ai(self, **kwargs) -> ChatOpenAI | None:
+    def chat_open_ai(self, **kwargs) -> Optional[ChatOpenAI]:  # ChatOpenAI | None:
         if self.openai_api_key is None or self.openai_api_key == "":
             print("OPENAI_API_KEY is not set")
             return None

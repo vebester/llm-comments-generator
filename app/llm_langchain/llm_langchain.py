@@ -36,8 +36,7 @@ class LLMLangChain:
 
         return
 
-
-    def open_ai(self, **kwargs) -> OpenAI | None:
+    def open_ai(self, **kwargs) -> Optional[OpenAI]: # OpenAI | None:
         if self.openai_api_key is None or self.openai_api_key == "":
             print("OPENAI_API_KEY is not set")
             return None
